@@ -11,23 +11,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html, body {
   height: 100%;
 }
+
+/* Body layout */
 body {
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(135deg, #ffe1f0, #f8e8f8);
   color: var(--text-color);
   text-align: center;
 
-  /* ✅ Mobile-friendly adjustments */
+  /* ✅ Make whole page scrollable on mobile */
   min-height: 100vh;
+  overflow-x: hidden;
   overflow-y: auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 }
 
 /* Intro gate */
@@ -68,11 +73,17 @@ body {
   transform: scale(1.1);
 }
 
-/* Keep the main page invisible until reveal */
+/* Main page reveal */
 #birthday-page {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s ease;
+  position: relative;
+  z-index: 2;
+
+  /* ✅ Important: allow full scroll inside */
+  display: block;
+  width: 100%;
 }
 #birthday-page.active {
   opacity: 1;
@@ -104,15 +115,13 @@ body {
 }
 
 /* Main content */
-#birthday-page {
-  position: relative;
-  z-index: 2;
+.content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem 4rem; /* extra bottom space ✅ */
 }
 
 .title {
@@ -122,6 +131,7 @@ body {
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   opacity: 0;
   animation: fadeInUp 1s ease forwards 0.5s;
+  margin-bottom: 0.5rem;
 }
 
 .name {
@@ -157,7 +167,7 @@ body {
 
 .signature {
   margin-top: 1rem;
-  margin-bottom: 2rem; /* ✅ Prevents cutoff at bottom */
+  margin-bottom: 3rem; /* ✅ extra safe space at bottom */
   font-family: 'Great Vibes', cursive;
   font-size: clamp(1.1rem, 3.5vw, 1.6rem);
   color: var(--accent-color);
@@ -190,3 +200,5 @@ body {
     padding: 0 1rem;
   }
 }
+
+
